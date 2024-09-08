@@ -25,7 +25,7 @@ const EditTicketForm = ({ ticket }) => {
 
   const [formData, setFormData] = useState(startingTicketData);
 
-  const handleChange = (e) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const name = e.target.name;
 
@@ -35,7 +35,7 @@ const EditTicketForm = ({ ticket }) => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (EDITMODE) {
@@ -96,7 +96,7 @@ const EditTicketForm = ({ ticket }) => {
           onChange={handleChange}
           required={true}
           value={formData.description}
-          rows="5"
+          rows={5}
         />
         <label>Category</label>
         <select
@@ -150,6 +150,7 @@ const EditTicketForm = ({ ticket }) => {
           />
           <label>4</label>
           <input
+           
             id="priority-5"
             name="priority"
             type="radio"

@@ -3,10 +3,16 @@ import PriorityDisplay from "./PriorityDisplay";
 import DeleteBlock from "./DeleteBlock";
 import ProgressDisplay from "./ProgressDisplay";
 import Link from "next/link";
+import { TicketType } from "../(models)/Ticket";
 
-const TicketCard = ({ ticket }) => {
-  function formatTimestamp(timestamp) {
-    const options = {
+interface NewTicketType extends TicketType {
+  _id:string
+  createdAt:Date
+}
+
+const TicketCard = ({ ticket }:{ticket:NewTicketType}) => {
+  function formatTimestamp(timestamp:Date) {
+    const options : Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",

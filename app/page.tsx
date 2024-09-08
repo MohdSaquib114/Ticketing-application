@@ -1,5 +1,6 @@
 import React from "react";
 import TicketCard from "./(components)/TicketCard";
+import { Ticket, TicketType } from "./(models)/Ticket";
 
 const getTickets = async () => {
   try {
@@ -28,7 +29,7 @@ const Dashboard = async () => {
   const tickets = data.tickets;
 
   const uniqueCategories = [
-    ...new Set(tickets?.map(({ category }) => category))
+    ...new Set(tickets?.map(({ category }:{category:string}) => category))
   ];
 
   return (
@@ -40,10 +41,10 @@ const Dashboard = async () => {
               <h2>{uniqueCategory}</h2>
               <div className="lg:grid grid-cols-2 xl:grid-cols-4 ">
                 {tickets
-                  .filter((ticket) => ticket.category === uniqueCategory)
-                  .map((filteredTicket, _index) => (
+                  .filter((ticket:TicketType) => ticket.category === uniqueCategory)
+                  .map((filteredTicket:TicketType, _index:number) => (
                     <TicketCard
-                      id={_index}
+                      
                       key={_index}
                       ticket={filteredTicket}
                     />

@@ -3,21 +3,23 @@ import mongoose, {Schema} from "mongoose";
 mongoose.connect(process.env.MONGODB_URL as string)
 mongoose.Promise = global.Promise
 
-export interface Ticket extends Document {
+export interface TicketType extends Document {
     title : string,
     description : string,
     category : string,
     priority : number,
+    progress: number,
     status : string,
     active : boolean
 }
 
-const ticketSchema : Schema<Ticket> = new Schema(
+const ticketSchema : Schema<TicketType> = new Schema(
 {
     title : String,
     description : String,
     category : String,
     priority : Number,
+    progress: Number,
     status : String,
     active : Boolean
 },
@@ -26,4 +28,4 @@ const ticketSchema : Schema<Ticket> = new Schema(
 }
 );
 
-export const Ticket = mongoose.models.Ticket as mongoose.Model<Ticket> || mongoose.model<Ticket>("Ticket", ticketSchema)
+export const Ticket = mongoose.models.Ticket as mongoose.Model<TicketType> || mongoose.model<TicketType>("Ticket", ticketSchema)
